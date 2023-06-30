@@ -1,0 +1,29 @@
+{
+  "name": "web_drawer",
+  "version": "1.0.0",
+  "description": "Use web to draw some interesting thing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "webpack serve --mode development",
+    "run": "node index",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgw00k/web_drawer.git"
+  },
+  "author": "Wings",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgw00k/web_drawer/issues"
+  },
+  "homepage": "https://github.com/pgw00k/web_drawer#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.3",
+    "html2canvas": "^1.4.1",
+    "three": "^0.154.0",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}

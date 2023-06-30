@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>绘图测试</title>
+<style type="text/css">
+canvas {
+    border: 1px solid black;
+	background:transparent;
+}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+	<style>
+		.line {
+			stroke: black;
+			stroke-width: 2;
+			fill: black;
+		}
+
+		#base .ray {
+			marker-end: url(#t0);
+		}
+
+		.dline {
+			stroke-dasharray: 2 2;
+		}
+
+		#red * {
+			stroke: red;
+			fill: red;
+		}
+
+		#red .ray {
+			marker-end: url(#tr);
+		}
+
+		#green * {
+			stroke: green;
+			fill: green;
+		}
+
+		#green .ray {
+			marker-end: url(#tg);
+		}
+
+		#blue * {
+			stroke: blue;
+			fill: blue;
+		}
+
+		#blue .ray {
+			marker-end: url(#tb);
+		}
+	</style>
+	<g id="base">
+		<defs>
+			<marker id="t0" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto">
+				<path d="M 0 0 L 5 2 L 0 4 z" />
+			</marker>
+		</defs>
+		<path d="M 12,500 H 500" class="line ray" />
+		<path d="M 12,500 V 12" class="line ray" />
+
+		<circle cx="150" cy="300" r="4"></circle>
+		<text x="150" y="320">A(x1,y1)</text>
+	</g>
+	<g id="red">
+
+		<defs>
+			<marker id="tr" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" refX="7" refY="2" orient="auto">
+				<path d="M 0 0 L 5 2 L 0 4 z" />
+			</marker>
+		</defs>
+
+		<circle cx="450" cy="100" r="4"></circle>
+		<text x="440" y="90">B2(x2,y2)</text>
+
+		<path d="M 150,300 h 300" class="line ray dline" />
+		<path d="M 150,300 v -200" class="line ray dline" />
+
+		<path d="M 450,100 h -500" class="line dline" />
+		<path d="M 450,100 v 500" class="line dline" />
+
+		<text x="160" y="200">Ty</text>
+		<text x="280" y="290">Tx</text>
+	</g>
+
+	<g id="green">
+		<defs>
+			<marker id="tg" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" refX="6" refY="2" orient="auto">
+				<path d="M 0 0 L 5 2 L 0 4 z" />
+			</marker>
+		</defs>
+
+		<circle cx="235" cy="395" r="4"></circle>
+		<text x="235" y="415">B3(x3,y3)</text>
+
+		<path d="M 12,500 L 150,300 " class="line ray dline" />
+		<path d="M 12,500 L 150,300 " class="line ray dline" transform="rotate(30,12,500)" />
+		<path d="M 75,406 A102,102 0 0,1 117.5,451 " class="line dline ray" style="fill: none;" />
+		<text fill="green" x="120" y="410" font-size="40">θ</text>
+	</g>
+
+	<g id="blue">
+		<defs>
+			<marker id="tb" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" refX="7" refY="2" orient="auto">
+				<path d="M 0 0 L 5 2 L 0 4 z" />
+			</marker>
+		</defs>
+
+		<circle cx="81" cy="400" r="4"></circle>
+		<text x="41" y="380">B4(x4,y4)</text>
+		<path d="M 12,500 L 81,400" class="line ray dline" />
+	</g>
+</svg>
+	
+<canvas id="dst"></canvas>
+
+<script type="text/javascript">
+	var svg = document.getElementsByTagName('svg')[0];	
+	var c = document.getElementById('dst');
+	var ctx = c.getContext("2d");
+	
+	var width = svg.getAttribute('width');
+	var height = svg.getAttribute('height');
+	
+	c.setAttribute('width',width);
+	c.setAttribute('height',height);
+	
+	let blob = new Blob([svg.outerHTML],{type:'image/svg+xml;charset=utf-8'});
+	let URLGen = window.URL || window.webkitURL || window;
+	let blobURL = URLGen.createObjectURL(blob);
+	
+	let image = new Image();
+	image.onload = () => {
+		ctx.drawImage(image, 0, 0);
+	};
+image.src = blobURL;
+
+</script>
+
+</body>
+</html>
