@@ -13,6 +13,11 @@ const srcDir = path.resolve(__dirname, '../src');
 function get_all_lib(entry)
 {
 	let root = path.resolve(__dirname, '../src/lib');
+	if(!fs.existsSync(root))
+	{
+		console.warn(`Lib ${root} is not exist!`);
+		return;
+	}
 	console.log(`Find all lib js in ${root}`);
 	let results = [];
 	FileHelper.get_all_file(root, SearchOption, fileExt, results);

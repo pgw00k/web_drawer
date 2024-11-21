@@ -16,15 +16,29 @@
 				padding: 2px;
 				background:transparent;
 			}
+			h1{
+				margin: 0;
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+			.view{
+				position: relative;
+			}
 		</style>
 	</head>
 	<body>
 		
 		<div id="container">
 			<canvas id = "threeScene"></canvas>
-			<canvas id = "finalView"></canvas>
+			<div id="finalView" class="view" style="width: 512px;">
+				<h1>OpenGL</h1>
+				<canvas id = "finalCanvas"></canvas>
+			</div>
+			
 		</div>
 		<img src="" id="imageTest"/>
+		<button id="btnUpdate"> Update </button>
 		<button id="btnSave"> Save Final </button>
 		<script type="text/javascript" src="tjs_axe/main.js"></script>
 	</body>

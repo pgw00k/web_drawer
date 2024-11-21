@@ -8,11 +8,9 @@ module.exports={
 	
 		for (let i = 0; i < rs.length; i++) {
 			let r = rs[i];
-			let fp = path.join(root, r.name);
+			let fp = path.join(r.path, r.name);
 			if (r.isFile() && reg.test(r.name)) {
 				result.push(fp);
-			} else if (r.isDirectory()) {
-				get_all_file(fp, op, key, result);
 			}
 		}
 	}
